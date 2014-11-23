@@ -6,9 +6,9 @@ import (
 	"time"
 )
 
-func main() {
-	const hoursMinutesFormat = "15:04"
+const hoursMinutesFormat = "15:04"
 
+func main() {
 	if len(os.Args) != 3 {
 		fmt.Println("Usage: worklog start_date end_date")
 		os.Exit(0)
