@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"os"
 	"time"
 )
@@ -9,28 +10,27 @@ import (
 const hoursMinutesFormat = "15:04"
 
 func main() {
+	log.SetFlags(0)
+
 	if len(os.Args) != 3 {
-		fmt.Println("Usage: worklog start_date end_date")
-		os.Exit(0)
+		log.Println("Usage: worklog start_date end_date")
+		return
 	}
 
 	timeFrom, err := time.Parse(hoursMinutesFormat, os.Args[1])
 
 	if err != nil {
-		fmt.Println("Invalid timeFrom time")
-		os.Exit(-1)
+		log.Fatalln("Invalid timeFrom time")
 	}
 
 	timeTo, err := time.Parse(hoursMinutesFormat, os.Args[2])
 
 	if err != nil {
-		fmt.Println("Invalid timeTo time")
-		os.Exit(-1)
+		log.Fatalln("Invalid timeTo time")
 	}
 
 	if timeTo.Before(timeFrom) {
-		fmt.Println("timeTo has to be after timeFrom")
-		os.Exit(-1)
+		log.Fatalln("timeTo has to be after timeFrom")
 	}
 
 	fmt.Println(timeTo.Sub(timeFrom))
