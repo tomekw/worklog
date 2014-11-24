@@ -9,9 +9,11 @@ import (
 
 const hoursMinutesFormat = "15:04"
 
-func main() {
+func init() {
 	log.SetFlags(0)
+}
 
+func main() {
 	if len(os.Args) != 3 {
 		log.Println("Usage: worklog start_date end_date")
 		return
